@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.Scanner;
-
 class Voter {
 
     String name;
@@ -20,35 +18,30 @@ class Voter {
 
     void checkEligibility() {
 
-        System.out.println("\n--------------------------------");
-        System.out.println("Voter Name: " + name);
+        System.out.println("----------------------------------------");
+        System.out.println("Name: " + name);
         System.out.println("Age: " + age);
         System.out.println("Citizenship: " + citizenship);
         System.out.println("Voter ID: " + voterId);
         System.out.println("ID Valid: " + idValid);
 
-        boolean eligible = true;
-
         if (age < 18) {
-            System.out.println("Not Eligible: Voter is under 18 years old.");
-            eligible = false;
+            System.out.println("Result: NOT ELIGIBLE");
+            System.out.println("Reason: Underage - must be at least 18 years old.");
         }
-
-        if (!citizenship.equalsIgnoreCase("Indian")) {
-            System.out.println("Not Eligible: Voter is not an Indian citizen.");
-            eligible = false;
+        else if (!citizenship.equalsIgnoreCase("Indian")) {
+            System.out.println("Result: NOT ELIGIBLE");
+            System.out.println("Reason: Not an Indian citizen.");
         }
-
-        if (!idValid) {
-            System.out.println("Not Eligible: Voter ID is invalid.");
-            eligible = false;
+        else if (!idValid) {
+            System.out.println("Result: NOT ELIGIBLE");
+            System.out.println("Reason: Voter ID is invalid.");
         }
-
-        if (eligible) {
+        else {
             System.out.println("Result: ELIGIBLE TO VOTE");
         }
 
-        System.out.println("--------------------------------");
+        System.out.println("----------------------------------------");
     }
 }
 
@@ -56,44 +49,43 @@ public class App {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        // Predefined voter details
+        Voter voter1 = new Voter(
+                "Rahul Sharma",
+                25,
+                "Indian",
+                "IND12345",
+                true
+        );
 
-        System.out.print("Enter number of voters: ");
-        int numberOfVoters = scanner.nextInt();
-        scanner.nextLine();
+        Voter voter2 = new Voter(
+                "Aman Verma",
+                16,
+                "Indian",
+                "IND12346",
+                true
+        );
 
-        for (int i = 1; i <= numberOfVoters; i++) {
+        Voter voter3 = new Voter(
+                "John Smith",
+                30,
+                "American",
+                "USA12345",
+                true
+        );
 
-            System.out.println("\nEnter details for Voter " + i);
+        Voter voter4 = new Voter(
+                "Priya Singh",
+                22,
+                "Indian",
+                "IND12348",
+                false
+        );
 
-            System.out.print("Name: ");
-            String name = scanner.nextLine();
-
-            System.out.print("Age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.print("Citizenship: ");
-            String citizenship = scanner.nextLine();
-
-            System.out.print("Voter ID: ");
-            String voterId = scanner.nextLine();
-
-            System.out.print("Is Voter ID valid? (true/false): ");
-            boolean idValid = scanner.nextBoolean();
-            scanner.nextLine();
-
-            Voter voter = new Voter(
-                    name,
-                    age,
-                    citizenship,
-                    voterId,
-                    idValid
-            );
-
-            voter.checkEligibility();
-        }
-
-        scanner.close();
+        // Check eligibility
+        voter1.checkEligibility();
+        voter2.checkEligibility();
+        voter3.checkEligibility();
+        voter4.checkEligibility();
     }
 }
