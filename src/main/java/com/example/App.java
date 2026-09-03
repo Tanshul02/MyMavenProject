@@ -1,91 +1,33 @@
-package com.example;
+package com.course;
 
-class Voter {
+import java.util.ArrayList;
+import java.util.List;
 
-    String name;
-    int age;
-    String citizenship;
-    String voterId;
-    boolean idValid;
+public class Student {
 
-    Voter(String name, int age, String citizenship, String voterId, boolean idValid) {
+    private String name;
+    private String studentId;
+    private List<Subject> subjects;
+
+    public Student(String name, String studentId) {
         this.name = name;
-        this.age = age;
-        this.citizenship = citizenship;
-        this.voterId = voterId;
-        this.idValid = idValid;
+        this.studentId = studentId;
+        this.subjects = new ArrayList<>();
     }
 
-    void checkEligibility() {
-
-        System.out.println("----------------------------------------");
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-        System.out.println("Citizenship: " + citizenship);
-        System.out.println("Voter ID: " + voterId);
-        System.out.println("ID Valid: " + idValid);
-
-        if (age < 18) {
-            System.out.println("Result: NOT ELIGIBLE");
-            System.out.println("Reason: Underage - must be at least 18 years old.");
-        }
-        else if (!citizenship.equalsIgnoreCase("Indian")) {
-            System.out.println("Result: NOT ELIGIBLE");
-            System.out.println("Reason: Not an Indian citizen.");
-        }
-        else if (!idValid) {
-            System.out.println("Result: NOT ELIGIBLE");
-            System.out.println("Reason: Voter ID is invalid.");
-        }
-        else {
-            System.out.println("Result: ELIGIBLE TO VOTE");
-        }
-
-        System.out.println("----------------------------------------");
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
     }
-}
 
-public class App {
+    public String getName() {
+        return name;
+    }
 
-    public static void main(String[] args) {
+    public String getStudentId() {
+        return studentId;
+    }
 
-        // Predefined voter details
-        Voter voter1 = new Voter(
-                "Rahul Sharma",
-                25,
-                "Indian",
-                "IND12345",
-                true
-        );
-
-        Voter voter2 = new Voter(
-                "Aman Verma",
-                16,
-                "Indian",
-                "IND12346",
-                true
-        );
-
-        Voter voter3 = new Voter(
-                "John Smith",
-                30,
-                "American",
-                "USA12345",
-                true
-        );
-
-        Voter voter4 = new Voter(
-                "Priya Singh",
-                22,
-                "Indian",
-                "IND12348",
-                false
-        );
-
-        // Check eligibility
-        voter1.checkEligibility();
-        voter2.checkEligibility();
-        voter3.checkEligibility();
-        voter4.checkEligibility();
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 }
